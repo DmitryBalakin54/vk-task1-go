@@ -1,0 +1,21 @@
+services:
+  app:
+    build: ./app
+    restart: unless-stopped
+    environment:
+      - TARANTOOL_ADDR=tarantool:3301
+    depends_on:
+      tarantool:
+        condition: service_healthy
+
+  tarantool:
+    build: ./tarantool
+    restart: unless-stopped
+    ports:
+      - "3301:3301"
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8081/ || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
