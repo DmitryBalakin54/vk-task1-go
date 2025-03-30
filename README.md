@@ -1,6 +1,6 @@
-## Mattermost vote-bot
+# Mattermost vote-bot
 
-# 1 Настройка Mattermost
+## 1 Настройка Mattermost
 
 В папке `mattermost` выполняем команду `docker-compose up -d mattermost`
 
